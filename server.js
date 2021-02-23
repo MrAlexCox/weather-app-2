@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const request = require('request');
+
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,9 +26,17 @@ app.listen(port, () => {
 });
 
 
+const data = [];
+
+app.post('/add', addEntry )
+
+function addEntry (req, res){
+  console.log(req.body)
+  data.push(req.body)
+}
 
 
-const request = require('request');
+
 
 const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
 // const apiKey = ;
@@ -66,9 +76,9 @@ const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=c9a7
 //
 // console.log(first + second + third);
 
-const gen = document.getElementById('generate');
-const uCity = document.getElementById('userCity');
-const uInput = document.getElementById('feelings');
+// const gen = document.getElementById('generate');
+// const uCity = document.getElementById('userCity');
+// const uInput = document.getElementById('feelings');
 const cityLoc = (city, callback) => {
   const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(city) +  '&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
 
@@ -87,17 +97,16 @@ const cityLoc = (city, callback) => {
   })
 }
 
-gen.addEventListener('click', function (event){
-  event.preventDefault();
-  getValue();
+// gen.addEventListener('click', function (event){
+//   event.preventDefault();
+//   getValue();
   cityLoc('London', (error, data) => {
     console.log(error)
     console.log(data)
   })
-
-
-});
-
+//
+//
+// });
 
 
 
