@@ -17,10 +17,6 @@ app.use(express.static('project'));
 
 const port = 2000;
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// });
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
 });
@@ -31,56 +27,25 @@ const data = [];
 app.post('/add', addEntry )
 
 function addEntry (req, res){
+  let newEntry = {
+    city: req.body.uCity,
+    feelings: req.body.uInput
+  }
+  let newCity = req.body.uCity;
+  const dataEntry = cityLoc(newCity, (error, data) => {
+    console.log(error)
+    console.log(data)
+  })
   console.log(req.body)
-  data.push(req.body)
+  data.push(dataEntry)
+  console.log(data)
+  console.log(data[0])
+
 }
 
-
-
-
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
-// const apiKey = ;
-// let zip = xyz;
-
-
-// const weather = request({ url: url, json: true }, (error, response) => {
-//
-//   if (error) {
-//     console.log('There was a problem')
-//   } else if (response.body.cod == "404") {
-//
-//     console.log('Unable to find location....')
-//   } else {
-//     let x = response.body.weather[0].description;
-//     let y = response.body.main.temp;
-//     let z = response.body.main.humidity;
-//
-//   // console.log(response.body.weather[0].description);
-//   // console.log(response.body.main.temp);
-//   // console.log(response.body.main.humidity);
-//
-//   console.log(y);
-//
-//   return {
-//     first: x,
-//     second: y,
-//     third: z,
-//
-//   }
-// }});
-//
-// let d = weather;
-// let first = d.first;
-// let second = d.second;
-// let third = d.third;
-//
-// console.log(first + second + third);
-
-// const gen = document.getElementById('generate');
-// const uCity = document.getElementById('userCity');
-// const uInput = document.getElementById('feelings');
+const url = 'https://api.openweathermap.org/data/2.5/weather?q=london&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
 const cityLoc = (city, callback) => {
-  const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(city) +  '&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
+const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(city) +  '&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
 
   request({url: url, json: true }, (error, response) => {
     if (error) {
@@ -97,21 +62,8 @@ const cityLoc = (city, callback) => {
   })
 }
 
-// gen.addEventListener('click', function (event){
-//   event.preventDefault();
-//   getValue();
-  cityLoc('London', (error, data) => {
-    console.log(error)
-    console.log(data)
-  })
-//
-//
-// });
 
-
-
-
-// const input = document.querySelector('userCity');
-// const button = document.querySelector('generate');
-//
-// let
+  // cityLoc('London', (error, data) => {
+  //   console.log(error)
+  //   console.log(data)
+  // })
