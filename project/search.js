@@ -3,7 +3,7 @@ const gen = document.getElementById('generate');
 const uCity = document.getElementById('userCity');
 const uInput = document.getElementById('feelings');
 const webUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
-const apiKey = '&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
+const apiKey = '&appid=c9a71553491ecc658b5c6ebf80f4ab5a&units=metric';
 
 gen.addEventListener('click', function (event){
   event.preventDefault();

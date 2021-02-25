@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const request = require('request');
 
 
 const bodyParser = require('body-parser')
@@ -22,7 +21,7 @@ app.listen(port, () => {
 });
 
 
-let dataArray = [];
+let dataArray = {};
 
 app.post('/add', addEntry );
 
@@ -34,8 +33,8 @@ function addEntry (req, res){
   }
 
     console.log(newEntry);
-    dataArray.unshift(newEntry);
-    res.send(dataArray[0]);
+    dataArray = newEntry;
+    res.send(dataArray);
     console.log(dataArray);
 
 }
