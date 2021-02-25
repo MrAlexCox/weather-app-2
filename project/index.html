@@ -7,32 +7,39 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
- <body onload="cityList()">
+ <body>
+
 <div id = "app">
 
-  <div class ="holder headline">
-    Weather Journal App
-  </div>
+    <div id = "div1" class ="holder headline blue">
+      <span id="header">Weather Journal App</span>
+    </div>
 
-  <div class ="holder zip">
-    <label for="zip">Enter city here</label>
-    <input type="text" id="userCity" placeholder="enter city name here">
-  </div>
+    <div id = "div2" class ="holder zip">
+      <label for="zip" class="blue">Enter city here</label>
+      <input type="text" id="userCity" placeholder="enter city name here">
+    </div>
 
-  <div class ="holder feel">
-    <label for="feelings">How are you feeling today?</label>
-    <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-    <button id="generate" type = "submit"> Generate </button>
-  </div>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-   <div id = "entryHolder">
-    <div id = "date"></div>
-   <div id = "temp"></div>
-   <div id = "content"></div>
-  </div>
-  </div>
-  </div>
+    <div id = "div3" class ="holder feel">
+      <label for="feelings" class="blue">How are you feeling today?</label>
+      <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here"></textarea>
+      <button id="generate" type = "submit"> Generate </button>
+    </div>
+
+    <div id = "div4" class ="holder entry">
+      <div id = "entry" class = "title">Most Recent Entry</div>
+      <div id = "entryHolder">
+        <div class ="holder feel">
+          <div id = "today">
+            <div id = "date"></div>
+            <div id = "temp"></div>
+            <div id = "content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
 
 <script src="search.js" type="text/javascript"></script>
 <script src="./server.js" type="text/javascript"></script>

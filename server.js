@@ -22,48 +22,20 @@ app.listen(port, () => {
 });
 
 
-const data = [];
+let dataArray = [];
 
-app.post('/add', addEntry )
+app.post('/add', addEntry );
 
 function addEntry (req, res){
   let newEntry = {
-    city: req.body.uCity,
-    feelings: req.body.uInput
+    date: req.body.date,
+    temp: req.body.temp,
+    feelings: req.body.feelings
   }
-  let newCity = req.body.uCity;
-  const dataEntry = cityLoc(newCity, (error, data) => {
-    console.log(error)
-    console.log(data)
-  })
-  console.log(req.body)
-  data.push(dataEntry)
-  console.log(data)
-  console.log(data[0])
+
+    console.log(newEntry);
+    dataArray.unshift(newEntry);
+    res.send(dataArray[0]);
+    console.log(dataArray);
 
 }
-
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=london&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
-const cityLoc = (city, callback) => {
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(city) +  '&appid=c9a71553491ecc658b5c6ebf80f4ab5a';
-
-  request({url: url, json: true }, (error, response) => {
-    if (error) {
-      callback('Unable to connect to location services!', undefined)
-    } else if (response.body.cod == "404") {
-      callback('Ups your city wasn\'t found, please try again!', undefined)
-    } else {
-      callback(undefined, {
-        description: response.body.weather[0].description,
-        temp:  response.body.main.temp,
-        humidity: response.body.main.humidity
-      })
-    }
-  })
-}
-
-
-  // cityLoc('London', (error, data) => {
-  //   console.log(error)
-  //   console.log(data)
-  // })
